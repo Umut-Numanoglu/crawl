@@ -1168,6 +1168,12 @@ static string _why_reject(const item_def &item, int agent)
         return "Destroying a weapon Trog hates!";
     }
 
+	// Trog and Okawaru should not gift distortion weapons
+	if ( (get_weapon_brand(item) == SPWPN_DISTORTION) && (agent == GOD_TROG ||agent == GOD_OKAWARU))
+    {
+        return "Destroying distortion weapon!";
+    }
+	
     // Pain brand is useless if you've sacrificed Necromacy.
     if (you.get_mutation_level(MUT_NO_NECROMANCY_MAGIC)
         && get_weapon_brand(item) == SPWPN_PAIN)
